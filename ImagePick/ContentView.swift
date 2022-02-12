@@ -8,9 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var sheetBool: Bool = false
+    @State private var gorsel = UIImage(named: "profil")!
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        Image(uiImage: gorsel)
+            .resizable()
+            .scaledToFit()
+            .frame(width: 250, height: 250)
+            .clipShape(Circle())
+            .onTapGesture {
+                sheetBool = true
+            }
+            .sheet(isPresented: $sheetBool){
+                // ALBÜM
+                FotografSecimi(gorsel: $gorsel)
+            }
     }
 }
 
